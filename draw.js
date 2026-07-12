@@ -54,59 +54,75 @@ btnDraw.addEventListener('click', async () => {
   btnDraw.disabled = true;
   btnDraw.classList.add('opacity-50', 'cursor-not-allowed');
 
-  const currentGroupKey = `group${currentGroupIndex}`;
-  const groupData = players[currentGroupKey];
+  while (currentGroupIndex <= 4) {
+    const currentGroupKey = `group${currentGroupIndex}`;
+    const groupData = players[currentGroupKey];
 
-  // Find available players
-  const availablePlayers = groupData.filter(p => !drawnInCurrentGroup.includes(p.id));
+    const availablePlayers = groupData.filter(p => !drawnInCurrentGroup.includes(p.id));
 
-  if (availablePlayers.length === 0) {
-    nextGroup();
-    return;
-  }
-
-  // Pick random person
-  const person = availablePlayers[Math.floor(Math.random() * availablePlayers.length)];
-  let partner = null;
-
-  if (person.spouse) {
-    partner = groupData.find(p => p.id === person.spouse);
-  } else if (currentGroupIndex > 1) {
-    // For groups 2,3,4 find the other person in the group
-    partner = availablePlayers.find(p => p.id !== person.id);
-  }
-
-  // Assign teams randomly (50/50 chance)
-  const isRed = Math.random() < 0.5;
-  const team1 = isRed ? 'red' : 'blue';
-  const team2 = isRed ? 'blue' : 'red';
-
-  // Mark as drawn
-  drawnInCurrentGroup.push(person.id);
-  if (partner) drawnInCurrentGroup.push(partner.id);
-
-  // Add to teams
-  if (team1 === 'red') teamRed.push(person); else teamBlue.push(person);
-  if (partner) {
-    if (team2 === 'red') teamRed.push(partner); else teamBlue.push(partner);
-  }
-
-  await animateDraw(person, partner, team1, team2);
-
-  // Check group completion
-  const updatedAvailable = groupData.filter(p => !drawnInCurrentGroup.includes(p.id));
-  if (updatedAvailable.length === 0) {
-    if (currentGroupIndex < 4) {
+    if (availablePlayers.length === 0) {
       nextGroup();
-    } else {
-      setTimeout(() => {
-        showFinalResults();
-      }, 1000);
+      if (currentGroupIndex > 4) {
+        setTimeout(() => showFinalResults(), 1000);
+        break;
+      }
+      continue;
     }
-  } else {
-    isDrawing = false;
-    btnDraw.disabled = false;
-    btnDraw.classList.remove('opacity-50', 'cursor-not-allowed');
+
+    // Pick random person
+    const person = availablePlayers[Math.floor(Math.random() * availablePlayers.length)];
+    let partner = null;
+
+    if (person.spouse) {
+      partner = groupData.find(p => p.id === person.spouse);
+    }
+
+    // Smart Assignment to guarantee 4M / 3F
+    let team1 = 'red', team2 = 'blue';
+    const redM = teamRed.filter(p => p.gender === 'M').length;
+    const redF = teamRed.filter(p => p.gender === 'F').length;
+    const blueM = teamBlue.filter(p => p.gender === 'M').length;
+    const blueF = teamBlue.filter(p => p.gender === 'F').length;
+
+    if (partner) {
+      const canPersonRed = person.gender === 'M' ? redM < 4 : redF < 3;
+      const canPartnerBlue = partner.gender === 'M' ? blueM < 4 : blueF < 3;
+      const option1Valid = canPersonRed && canPartnerBlue;
+
+      const canPersonBlue = person.gender === 'M' ? blueM < 4 : blueF < 3;
+      const canPartnerRed = partner.gender === 'M' ? redM < 4 : redF < 3;
+      const option2Valid = canPersonBlue && canPartnerRed;
+
+      if (option1Valid && option2Valid) {
+        if (Math.random() < 0.5) { team1 = 'blue'; team2 = 'red'; }
+      } else if (option2Valid) {
+        team1 = 'blue'; team2 = 'red';
+      }
+    } else {
+      const canRed = person.gender === 'M' ? redM < 4 : redF < 3;
+      const canBlue = person.gender === 'M' ? blueM < 4 : blueF < 3;
+      
+      if (canRed && canBlue) {
+        team1 = Math.random() < 0.5 ? 'red' : 'blue';
+      } else if (canRed) {
+        team1 = 'red';
+      } else {
+        team1 = 'blue';
+      }
+      team2 = team1 === 'red' ? 'blue' : 'red';
+    }
+
+    // Mark as drawn
+    drawnInCurrentGroup.push(person.id);
+    if (partner) drawnInCurrentGroup.push(partner.id);
+
+    // Add to teams
+    if (team1 === 'red') teamRed.push(person); else teamBlue.push(person);
+    if (partner) {
+      if (team2 === 'red') teamRed.push(partner); else teamBlue.push(partner);
+    }
+
+    await animateDraw(person, partner, team1, team2);
   }
 });
 
@@ -123,9 +139,7 @@ function nextGroup() {
   vsDivider.classList.add('hidden');
   drawInfo.innerText = `Nhấn nút để bốc thăm Group ${currentGroupIndex}.`;
 
-  isDrawing = false;
-  btnDraw.disabled = false;
-  btnDraw.classList.remove('opacity-50', 'cursor-not-allowed');
+  isDrawing = true; // Stay in auto-drawing mode
 }
 
 async function animateDraw(p1, p2, t1, t2) {
