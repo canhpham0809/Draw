@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⚽ Chúng Mình Cup 2026</title>
+  <meta name="description" content="Chúng Mình Cup 2026 - Giải bóng đá gia đình, đoàn kết, vui vẻ và fair play." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#16a34a',
+            secondary: '#0f172a',
+            accent: '#f59e0b',
+            background: '#f8fafc',
+            card: '#ffffff',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* Accordion CSS for pure HTML */
+    .accordion-content {
+      display: none;
+    }
+
+    .accordion-toggle:checked+.accordion-content {
+      display: block;
+    }
+
+    .accordion-toggle:checked~.accordion-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2 text-xl font-bold text-secondary">
+        <span>⚽</span> Chúng Mình Cup
+      </a>
+      <!-- Mobile menu button (CSS only toggle) -->
+      <label for="mobile-menu" class="md:hidden cursor-pointer p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12" />
+          <line x1="4" x2="20" y1="6" y2="6" />
+          <line x1="4" x2="20" y1="18" y2="18" />
+        </svg>
+      </label>
+      <input type="checkbox" id="mobile-menu" class="hidden peer" />
+
+      <!-- Navigation -->
+      <nav
+        class="hidden md:flex gap-6 font-medium peer-checked:flex absolute md:static top-full left-0 w-full md:w-auto flex-col md:flex-row bg-white md:bg-transparent shadow-lg md:shadow-none p-4 md:p-0 border-t md:border-t-0 border-gray-100">
+        <a href="#about" class="py-2 hover:text-primary transition-colors">Giới thiệu</a>
+        <a href="#teams" class="py-2 hover:text-primary transition-colors">Đội bóng</a>
+        <a href="#timeline" class="py-2 hover:text-primary transition-colors">Lịch thi đấu</a>
+        <a href="#rules" class="py-2 hover:text-primary transition-colors">Luật</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section
+    class="bg-gradient-to-br from-secondary to-gray-800 text-white py-20 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <div
+        class="inline-block px-3 py-1 bg-accent/20 text-accent rounded-full text-sm font-semibold mb-4 border border-accent/30">
+        Giải bóng đá gia đình
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">CHÚNG MÌNH CUP <span class="text-primary">2026</span></h1>
+      <p class="text-lg md:text-xl text-gray-200 mb-8">Đoàn kết • Vui vẻ • Fair Play</p>
+
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 backdrop-blur text-sm">📍 Sân 9 Bé</div>
+        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 backdrop-blur text-sm">🗓 Chủ nhật</div>
+        <div class="bg-white/10 px-4 py-2 rounded-lg border border-white/20 backdrop-blur text-sm">🕓 16:00 - 16:45
+        </div>
+      </div>
+
+      <a href="#timeline"
+        class="inline-block bg-primary hover:bg-green-700 text-white px-6 py-3 rounded-full font-bold transition-colors">
+        Xem lịch thi đấu
+      </a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 py-12 space-y-16">
+
+    <!-- About -->
+    <section id="about" class="bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 text-secondary">Giới thiệu giải đấu</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        "Chúng Mình Cup" không chỉ là một giải đấu bóng đá, mà là nơi để gia đình và những người thân yêu cùng nhau tạo
+        nên những kỷ niệm đẹp. Chúng ta đến đây không phải vì chiếc cúp vô địch, mà vì tiếng cười, sự gắn kết và tinh
+        thần thể thao cao thượng (Fair Play).
+      </p>
+    </section>
+
+    <!-- Teams -->
+    <section id="teams">
+      <h2 class="text-2xl font-bold text-center mb-6 text-secondary">Hai Đội Thi Đấu</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Team Blue -->
+        <div class="bg-card rounded-2xl shadow-sm border border-blue-100 overflow-hidden">
+          <div class="bg-blue-500 text-white p-4 text-center">
+            <h3 class="text-xl font-bold mb-1">Đội Xanh</h3>
+            <span class="inline-block bg-white/20 px-3 py-1 rounded-full text-xs">Đội trưởng: Ba Tý</span>
+          </div>
+          <ul class="p-4 space-y-2">
+            <li class="flex justify-between items-center p-3 bg-blue-50 rounded-lg text-blue-900"><span
+                class="font-semibold">Anh Hai</span> <span>👨</span></li>
+            <li class="flex justify-between items-center p-3 bg-blue-50 rounded-lg text-blue-900"><span
+                class="font-semibold">Cậu Ba</span> <span>👨</span></li>
+            <li class="flex justify-between items-center p-3 bg-blue-50 rounded-lg text-blue-900"><span
+                class="font-semibold">Dì Út</span> <span>👩</span></li>
+            <li class="flex justify-between items-center p-3 bg-blue-50 rounded-lg text-blue-900"><span
+                class="font-semibold">Bé Na</span> <span>🧒</span></li>
+            <li class="flex justify-between items-center p-3 bg-blue-50 rounded-lg text-blue-900"><span
+                class="font-semibold">Bé Tèo</span> <span>🧒</span></li>
+          </ul>
+        </div>
+
+        <!-- Team Red -->
+        <div class="bg-card rounded-2xl shadow-sm border border-red-100 overflow-hidden">
+          <div class="bg-red-500 text-white p-4 text-center">
+            <h3 class="text-xl font-bold mb-1">Đội Đỏ</h3>
+            <span class="inline-block bg-white/20 px-3 py-1 rounded-full text-xs">Đội trưởng: Chú Tư</span>
+          </div>
+          <ul class="p-4 space-y-2">
+            <li class="flex justify-between items-center p-3 bg-red-50 rounded-lg text-red-900"><span
+                class="font-semibold">Anh Ba</span> <span>👨</span></li>
+            <li class="flex justify-between items-center p-3 bg-red-50 rounded-lg text-red-900"><span
+                class="font-semibold">Cô Năm</span> <span>👩</span></li>
+            <li class="flex justify-between items-center p-3 bg-red-50 rounded-lg text-red-900"><span
+                class="font-semibold">Bé Mập</span> <span>🧒</span></li>
+            <li class="flex justify-between items-center p-3 bg-red-50 rounded-lg text-red-900"><span
+                class="font-semibold">Bé Còi</span> <span>🧒</span></li>
+            <li class="flex justify-between items-center p-3 bg-red-50 rounded-lg text-red-900"><span
+                class="font-semibold">Dượng Sáu</span> <span>👨</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Organizers -->
+    <section>
+      <h2 class="text-2xl font-bold text-center mb-6 text-secondary">Ban Tổ Chức</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+        <div class="bg-card p-4 rounded-xl border border-gray-100 shadow-sm">
+          <div class="text-2xl mb-2">⚽</div>
+          <h3 class="font-bold text-gray-800">Trọng tài</h3>
+          <p class="text-gray-600">Hùng</p>
+        </div>
+        <div class="bg-card p-4 rounded-xl border border-gray-100 shadow-sm">
+          <div class="text-2xl mb-2">📸</div>
+          <h3 class="font-bold text-gray-800">Camera man</h3>
+          <p class="text-gray-600">Chú Nghĩa</p>
+        </div>
+        <div class="bg-card p-4 rounded-xl border border-gray-100 shadow-sm">
+          <div class="text-2xl mb-2">📣</div>
+          <h3 class="font-bold text-gray-800 mb-2">Đội cổ vũ</h3>
+          <p class="text-gray-600 text-sm">Ông ngoại, Chôm Chôm, Xuka, Hương, Tuyền</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline">
+      <h2 class="text-2xl font-bold text-center mb-6 text-secondary">Lịch Trình</h2>
+      <div
+        class="max-w-md mx-auto space-y-4 relative border-l-2 border-primary/30 ml-4 md:ml-auto md:mr-auto pl-6 pb-2 text-gray-700">
+
+        <div class="relative">
+          <div class="absolute w-3 h-3 bg-primary rounded-full -left-[31px] top-1.5"></div>
+          <span class="font-bold text-primary block text-sm">15:30</span> Có mặt tại sân
+        </div>
+        <div class="relative">
+          <div class="absolute w-3 h-3 bg-primary rounded-full -left-[31px] top-1.5"></div>
+          <span class="font-bold text-primary block text-sm">15:40</span> Khởi động
+        </div>
+        <div class="relative">
+          <div class="absolute w-3 h-3 bg-primary rounded-full -left-[31px] top-1.5"></div>
+          <span class="font-bold text-primary block text-sm">15:45</span> Phát áo + chia đội
+        </div>
+        <div class="relative">
+          <div class="absolute w-3 h-3 bg-primary rounded-full -left-[31px] top-1.5"></div>
+          <span class="font-bold text-primary block text-sm">15:55</span> Chụp hình
+        </div>
+        <div class="relative bg-white p-3 rounded-lg shadow-sm border border-accent/30 mt-2">
+          <div class="absolute w-3 h-3 bg-accent rounded-full -left-[31px] top-1.5"></div>
+          <span class="font-bold text-accent block text-sm">16:00</span> Khai cuộc (Hiệp 1)
+        </div>
+        <div class="relative text-gray-500 my-2">
+          <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[31px] top-1.5"></div>
+          <span class="font-bold text-gray-400 block text-sm">16:20</span> Nghỉ giữa hiệp
+        </div>
+        <div class="relative bg-white p-3 rounded-lg shadow-sm border border-accent/30 mb-2">
+          <div class="absolute w-3 h-3 bg-accent rounded-full -left-[31px] top-1.5"></div>
+          <span class="font-bold text-accent block text-sm">16:25</span> Hiệp 2
+        </div>
+        <div class="relative">
+          <div class="absolute w-3 h-3 bg-primary rounded-full -left-[31px] top-1.5"></div>
+          <span class="font-bold text-primary block text-sm">16:45</span> Kết thúc
+        </div>
+
+      </div>
+    </section>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Rules -->
+      <section id="rules">
+        <h2 class="text-2xl font-bold mb-4 text-secondary">Luật Thi Đấu</h2>
+        <div class="space-y-2">
+          <!-- Accordion item -->
+          <div class="border border-gray-200 rounded-lg bg-card">
+            <input type="checkbox" id="rule1" class="hidden peer" />
+            <label for="rule1" class="flex justify-between items-center p-3 font-semibold cursor-pointer select-none">
+              Thời gian
+              <svg class="w-5 h-5 transition-transform peer-checked:rotate-180 text-gray-400" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </label>
+            <div class="hidden peer-checked:block p-3 pt-0 text-sm text-gray-600 font-normal border-t border-gray-100">
+              Thi đấu 2 hiệp, mỗi hiệp 20 phút. Nghỉ giữa hiệp 5 phút.
+            </div>
+          </div>
+          
+          <div class="border border-gray-200 rounded-lg bg-card">
+            <input type="checkbox" id="rule2" class="hidden peer" />
+            <label for="rule2" class="flex justify-between items-center p-3 font-semibold cursor-pointer select-none">
+              Thay người
+              <svg class="w-5 h-5 transition-transform peer-checked:rotate-180 text-gray-400" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </label>
+            <div class="hidden peer-checked:block p-3 pt-0 text-sm text-gray-600 font-normal border-t border-gray-100">
+              Thay người tự do không giới hạn. Người thay ra có thể vào lại.
+            </div>
+          </div>
+          
+          <div class="border border-gray-200 rounded-lg bg-card">
+            <input type="checkbox" id="rule3" class="hidden peer" />
+            <label for="rule3" class="flex justify-between items-center p-3 font-semibold cursor-pointer select-none">
+              Phạm lỗi & Thẻ phạt
+              <svg class="w-5 h-5 transition-transform peer-checked:rotate-180 text-gray-400" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </label>
+            <div class="hidden peer-checked:block p-3 pt-0 text-sm text-gray-600 font-normal border-t border-gray-100">
+              Không xoạc bóng, không chơi xấu. Ưu tiên bảo vệ lẫn nhau. Thẻ vàng 50k, đỏ 100k vào quỹ liên hoan.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Preparation -->
+      <section>
+        <h2 class="text-2xl font-bold mb-4 text-secondary">Chuẩn Bị</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-card p-4 rounded-xl border border-gray-100">
+            <h3 class="font-bold text-gray-800 text-sm mb-1">👕 Đồng phục</h3>
+            <p class="text-xs text-gray-500">Đội trưởng phát áo tại sân, tự túc đồ lót & giày.</p>
+          </div>
+          <div class="bg-card p-4 rounded-xl border border-gray-100">
+            <h3 class="font-bold text-gray-800 text-sm mb-1">💧 BTC chuẩn bị</h3>
+            <p class="text-xs text-gray-500">Nước suối, chuối, cúp lưu niệm.</p>
+          </div>
+          <div class="bg-card p-4 rounded-xl border border-gray-100">
+            <h3 class="font-bold text-gray-800 text-sm mb-1">⚽ Dụng cụ</h3>
+            <p class="text-xs text-gray-500">Bóng thi đấu, găng tay thủ môn tự túc.</p>
+          </div>
+          <div class="bg-card p-4 rounded-xl border border-gray-100">
+            <h3 class="font-bold text-gray-800 text-sm mb-1">🚩 Trọng tài</h3>
+            <p class="text-xs text-gray-500">Chuẩn bị còi, thẻ phạt, sổ ghi chép.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Awards -->
+    <section class="bg-secondary text-white rounded-2xl p-6 text-center">
+      <h2 class="text-2xl font-bold mb-4">Các Danh Hiệu Vui</h2>
+      <div class="flex flex-wrap justify-center gap-2">
+        <span class="bg-white/10 px-3 py-1 rounded-full text-sm">🏆 Vua phá lưới</span>
+        <span class="bg-white/10 px-3 py-1 rounded-full text-sm">🧤 Thủ môn xuất sắc</span>
+        <span class="bg-white/10 px-3 py-1 rounded-full text-sm">⚡ Cầu thủ năng nổ</span>
+        <span class="bg-white/10 px-3 py-1 rounded-full text-sm">😂 Pha xử lý khó hiểu</span>
+        <span class="bg-white/10 px-3 py-1 rounded-full text-sm">🎯 Bàn thắng đẹp</span>
+        <span class="bg-white/10 px-3 py-1 rounded-full text-sm">👏 Fair Play</span>
+      </div>
+    </section>
+
+    <!-- Gallery Placeholder -->
+    <section>
+      <h2 class="text-2xl font-bold text-center mb-6 text-secondary">Thư Viện Ảnh</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center text-gray-400 text-xs">Ảnh 1
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center text-gray-400 text-xs">Ảnh 2
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center text-gray-400 text-xs">Ảnh 3
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center text-gray-400 text-xs">Ảnh 4
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center text-gray-400 text-xs">Ảnh 5
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center text-gray-400 text-xs">Ảnh 6
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center text-gray-400 text-xs">Ảnh 7
+        </div>
+        <div class="bg-gray-200 aspect-square rounded-lg flex items-center justify-center text-gray-400 text-xs">Ảnh 8
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white/70 text-center py-8">
+    <h2 class="text-xl font-bold text-white mb-2">Chúng Mình Cup 2026</h2>
+    <p class="text-accent text-sm mb-4">Đá vui - Gắn kết - Yêu thương ❤️</p>
+    <p class="text-xs">&copy; 2026 Giải bóng đá gia đình Chúng Mình.</p>
+  </footer>
+
+</body>
+
+</html>
