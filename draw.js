@@ -75,40 +75,34 @@ btnDraw.addEventListener('click', async () => {
 
     if (person.spouse) {
       partner = groupData.find(p => p.id === person.spouse);
+    } else {
+      // For groups 2,3,4 find the other person in the group
+      partner = availablePlayers.find(p => p.id !== person.id);
     }
 
-    // Smart Assignment to guarantee 4M / 3F
+    // Smart Assignment to guarantee 4M / 3F AND separate group members
     let team1 = 'red', team2 = 'blue';
-    const redM = teamRed.filter(p => p.gender === 'M').length;
-    const redF = teamRed.filter(p => p.gender === 'F').length;
-    const blueM = teamBlue.filter(p => p.gender === 'M').length;
-    const blueF = teamBlue.filter(p => p.gender === 'F').length;
 
-    if (partner) {
-      const canPersonRed = person.gender === 'M' ? redM < 4 : redF < 3;
-      const canPartnerBlue = partner.gender === 'M' ? blueM < 4 : blueF < 3;
-      const option1Valid = canPersonRed && canPartnerBlue;
+    if (currentGroupIndex === 1) {
+      // Group 1: 4 pairs of M/F. We must send exactly 2 M to Red and 2 M to Blue.
+      const redM = teamRed.filter(p => p.gender === 'M').length;
+      const blueM = teamBlue.filter(p => p.gender === 'M').length;
 
-      const canPersonBlue = person.gender === 'M' ? blueM < 4 : blueF < 3;
-      const canPartnerRed = partner.gender === 'M' ? redM < 4 : redF < 3;
-      const option2Valid = canPersonBlue && canPartnerRed;
+      const personIsM = person.gender === 'M';
+      const canPersonRed = personIsM ? redM < 2 : blueM < 2; // if person is F, partner is M. Partner to Blue means M to Blue.
+      const canPersonBlue = personIsM ? blueM < 2 : redM < 2;
 
-      if (option1Valid && option2Valid) {
-        if (Math.random() < 0.5) { team1 = 'blue'; team2 = 'red'; }
-      } else if (option2Valid) {
-        team1 = 'blue'; team2 = 'red';
-      }
-    } else {
-      const canRed = person.gender === 'M' ? redM < 4 : redF < 3;
-      const canBlue = person.gender === 'M' ? blueM < 4 : blueF < 3;
-      
-      if (canRed && canBlue) {
+      if (canPersonRed && canPersonBlue) {
         team1 = Math.random() < 0.5 ? 'red' : 'blue';
-      } else if (canRed) {
+      } else if (canPersonRed) {
         team1 = 'red';
       } else {
         team1 = 'blue';
       }
+      team2 = team1 === 'red' ? 'blue' : 'red';
+    } else {
+      // Groups 2, 3, 4: Pairs of same gender. Must be split.
+      team1 = Math.random() < 0.5 ? 'red' : 'blue';
       team2 = team1 === 'red' ? 'blue' : 'red';
     }
 
